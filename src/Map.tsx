@@ -2,7 +2,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 import { FC } from "react";
 
-const key = "AIzaSyAakxMV2k2ca53H_w8er-vqglP6V0aa7So";
+const key = process.env.REACT_APP_KEY;
 
 const containerStyle = {
     width: "50%",
