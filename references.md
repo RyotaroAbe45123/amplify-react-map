@@ -1,0 +1,2 @@
+- https://dev.classmethod.jp/articles/launching-a-map-app-using-react-google-maps-api-locally/
+- https://developers.google.com/maps/documentation/javascript/react-map
