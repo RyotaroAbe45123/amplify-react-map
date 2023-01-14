@@ -3,3 +3,5 @@
 - https://developers.google.com/maps/documentation/javascript/react-map
 - https://blog.usize-tech.com/show-s3table-on-react-app/
 - http://gmap.pw/api_v3/maker_hide/
+- https://www.npmjs.com/package/@react-google-maps/api
+- https://qiita.com/theFirstPenguin/items/dc94aeb1595df1a0aa56
