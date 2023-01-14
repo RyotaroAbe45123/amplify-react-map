@@ -1,2 +1,5 @@
+- https://dev.classmethod.jp/articles/amplify-react-cicd-tutorial/
 - https://dev.classmethod.jp/articles/launching-a-map-app-using-react-google-maps-api-locally/
 - https://developers.google.com/maps/documentation/javascript/react-map
+- https://blog.usize-tech.com/show-s3table-on-react-app/
+- http://gmap.pw/api_v3/maker_hide/
