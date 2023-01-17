@@ -1,54 +1,36 @@
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-
-import { FC } from "react";
+import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
+import { Dispatch, SetStateAction } from 'react';
 
 const key = process.env.REACT_APP_KEY ? process.env.REACT_APP_KEY : "";
 
 const containerStyle = {
-    width: "50%",
-    height: "50%",
+    width: "80%",
+    height: "80%"
 };
 
 const center = {
-lat: 35.69575,
-lng: 139.77521,
+    lat: 35.69575,
+    lng: 139.77521,
 };
 
-const positionA = {
-    lat: 35.69731,
-    lng: 139.7747,
+type Props = {
+    setText: Dispatch<SetStateAction<string>>
 }
 
-const positionB = {
-    lat: 35.69397,
-    lng: 139.7762,
-}
-
-const positionALabel = {
-    color: "#fff",
-    fontFamily: "sans-serif",
-    fontSize: "16px",
-    fontWeight: "700",
-    text: "office A"
-}
-
-export const Map: FC = () => {
-    return (
-        <>
-            <LoadScript googleMapsApiKey={key}>
-                <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={center}
-                    zoom={17}
-                >
-                    <Marker
-                        position={positionA}
-                        label={positionALabel}
-                        onClick={() => console.log("A")}
-                    />
-                    <Marker position={positionB} label={"office B"} />
-                </GoogleMap>
-            </LoadScript>
-        </>
-    )
+export const Map = ({ setText }: Props) => {
+  return (
+    <LoadScript
+      googleMapsApiKey={key}
+    >
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={5}
+      >
+        <MarkerF position={center} label="A"
+         onClick={() => setText("A")} 
+        />
+      </GoogleMap>
+    </LoadScript>
+  )
 }
