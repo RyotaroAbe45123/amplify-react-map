@@ -34,8 +34,5 @@ export const App = () => {
         {text}
       </Box>
     </Box>
-    // <div className="map">
-    //   <div className="title">Welcome to Map App!</div>
-    // </div>
   );
 }
