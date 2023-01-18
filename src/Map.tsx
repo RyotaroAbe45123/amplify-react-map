@@ -15,9 +15,10 @@ const center = {
 
 type Props = {
     setText: Dispatch<SetStateAction<string>>
+    pins: any
 }
 
-export const Map = ({ setText }: Props) => {
+export const Map = ({ setText, pins }: Props) => {
   return (
     <LoadScript
       googleMapsApiKey={key}
@@ -27,9 +28,14 @@ export const Map = ({ setText }: Props) => {
         center={center}
         zoom={5}
       >
-        <MarkerF position={center} label="A"
+        {
+            pins && pins.map((data: any) => (
+                <MarkerF key={data.name} position={data.address} label={data.name} />
+            ))
+        }
+        {/* <MarkerF position={center} label="A"
          onClick={() => setText("A")} 
-        />
+        /> */}
       </GoogleMap>
     </LoadScript>
   )
