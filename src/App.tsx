@@ -8,8 +8,8 @@ const endpoint = process.env.REACT_APP_API_ENDPOINT ? process.env.REACT_APP_API_
 type Pin = {
   name: string,
   address: {
-    lat: number,
-    lng: number,
+    lat: number | string,
+    lng: number | string,
   }
 }
 
@@ -18,28 +18,46 @@ export const App = () => {
 
   const [pins, setPins] = useState<Pin[] | null> (null);
   const getData = async () => {
-    const response: any = await fetch(`${endpoint}/dev/data`)
-    console.log(response.json());
-    setPins([
-      {
-        name: "hoge",
-        address: {
-          lat: 35.69575,
-          lng: 139.77521,
-        },
-      },
-      {
-        name: "fuga",
-        address: {
-          lat: 35.79575,
-          lng: 139.77521,
-        },
-      }
-    ]);
+    const response = await fetch(`${endpoint}/dev/data`)
+    return response.json();
+    // console.log(response.json());
+    // const d: Pin[] = response.json()
+    // console.log(d);
+    // setPins(d);
+    // setPins([
+    //   {
+    //     name: "hoge",
+    //     address: {
+    //       lat: 35.69575,
+    //       lng: 139.77521,
+    //     },
+    //   },
+    //   {
+    //     name: "fuga",
+    //     address: {
+    //       lat: 35.79575,
+    //       lng: 139.77521,
+    //     },
+    //   }
+    // ]);
   }
 
   useEffect(() => {
-    getData();
+    getData()
+      .then((data) => {
+        const d = data.map((dd: Pin) => {
+          return {
+            name: dd.name,
+            address: {
+              lat: Number(dd.address.lat),
+              lng: Number(dd.address.lng),
+            }
+          }
+        })
+        setPins(d);
+      })
+    // console.log(d);
+    // setPins(d as any);
   }, [])
 
   return (
