@@ -14,11 +14,11 @@ const center = {
 };
 
 type Props = {
-    setText: Dispatch<SetStateAction<string>>
+    setId: Dispatch<SetStateAction<number | null>>
     pins: any
 }
 
-export const Map = ({ setText, pins }: Props) => {
+export const Map = ({ setId, pins }: Props) => {
   return (
     <LoadScript
       googleMapsApiKey={key}
@@ -30,12 +30,9 @@ export const Map = ({ setText, pins }: Props) => {
       >
         {
             pins && pins.map((data: any) => (
-                <MarkerF key={data.name} position={data.address} label={data.name} />
+                <MarkerF key={data.name} position={data.address} label={data.name} onClick={() => setId(data.id)} />
             ))
         }
-        {/* <MarkerF position={center} label="A"
-         onClick={() => setText("A")} 
-        /> */}
       </GoogleMap>
     </LoadScript>
   )
