@@ -1,11 +1,13 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import './App.css';
+import { Image } from './Image';
 import { Map } from './Map';
 
 const endpoint = process.env.REACT_APP_API_ENDPOINT ? process.env.REACT_APP_API_ENDPOINT : ""
 
 type Pin = {
+  id: number,
   name: string,
   address: {
     lat: number | string,
@@ -14,32 +16,12 @@ type Pin = {
 }
 
 export const App = () => {
-  const [text, setText] = useState<string> ("");
+  const [id, setId] = useState<number | null> (null);
 
   const [pins, setPins] = useState<Pin[] | null> (null);
   const getData = async () => {
     const response = await fetch(`${endpoint}/dev/data`)
     return response.json();
-    // console.log(response.json());
-    // const d: Pin[] = response.json()
-    // console.log(d);
-    // setPins(d);
-    // setPins([
-    //   {
-    //     name: "hoge",
-    //     address: {
-    //       lat: 35.69575,
-    //       lng: 139.77521,
-    //     },
-    //   },
-    //   {
-    //     name: "fuga",
-    //     address: {
-    //       lat: 35.79575,
-    //       lng: 139.77521,
-    //     },
-    //   }
-    // ]);
   }
 
   useEffect(() => {
@@ -47,6 +29,7 @@ export const App = () => {
       .then((data) => {
         const d = data.map((dd: Pin) => {
           return {
+            id: Number(dd.id),
             name: dd.name,
             address: {
               lat: Number(dd.address.lat),
@@ -56,8 +39,6 @@ export const App = () => {
         })
         setPins(d);
       })
-    // console.log(d);
-    // setPins(d as any);
   }, [])
 
   return (
@@ -78,16 +59,10 @@ export const App = () => {
           alignItems="center"
           height="80%"
           >
-            <Map setText={setText} pins={pins} />
+            <Map setId={setId} pins={pins} />
           </Box>
       </Box>
-      <Box
-        width="20%"
-        height="100vh"
-        bgcolor="blue"
-        >
-        {text}
-      </Box>
+      <Image id={id} />
     </Box>
   );
 }
