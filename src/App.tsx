@@ -1,21 +1,16 @@
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
-import './App.css';
-import { Image } from './Image';
-import { Map } from './Map';
+import { Display } from './components/Display/Display';
+import { Pin } from './types/api';
+import { endpoint } from './utils/settings';
+// import { Image } from './Image';
+// import { Map } from './Map';
 
-const endpoint = process.env.REACT_APP_API_ENDPOINT ? process.env.REACT_APP_API_ENDPOINT : ""
-
-type Pin = {
-  id: number,
-  name: string,
-  address: {
-    lat: number | string,
-    lng: number | string,
-  }
-}
 
 export const App = () => {
+  const [show, setShow] = useState<boolean> (true);
+
+
   const [id, setId] = useState<number | null> (null);
 
   const [pins, setPins] = useState<Pin[] | null> (null);
@@ -42,27 +37,47 @@ export const App = () => {
   }, [])
 
   return (
-    <Box display="flex">
+    <Box
+      display="flex"
+      width="100%"
+      height="100vh"
+    >
       <Box
-        width="80%"
-        height="100vh"
-      >
-        <Box
-          height="20%"
-          bgcolor="red"
+        bgcolor="red"
+        width="100%"
+        height="100%"
+        // zIndex={0}
+        position="relative"
+      ></Box>
+      <Box
+        bgcolor="#fff"
+        sx={{
+          opacity: 0.6
+        }}
+        width="20%"
+        height="60%"
+        left="10%"
+        top="20%"
+        // zIndex={1}
+        position="absolute"
         >
-          a
+          <Button
+            onClick={() => setShow(true)}
+          >a</Button>
         </Box>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="80%"
-          >
-            <Map setId={setId} pins={pins} />
-          </Box>
-      </Box>
-      <Image id={id} />
+      <Display show={show} setShow={setShow} />
+      {/* <Box
+        bgcolor="#000"
+        sx={{
+          opacity: 0.6
+        }}
+        width="20%"
+        height="60%"
+        left="70%"
+        top="20%"
+        // zIndex={2}
+        position="absolute"
+        ></Box> */}
     </Box>
   );
 }
