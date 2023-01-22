@@ -4,5 +4,7 @@ export type Pin = {
     address: {
         lat: number | string,
         lng: number | string,
-    }    
+    },
+    category_1: string,
+    category_2: number
 }

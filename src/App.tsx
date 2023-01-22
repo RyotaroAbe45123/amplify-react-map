@@ -19,6 +19,8 @@ export const App = () => {
     return response.json();
   }
 
+  const [initPins, setInitPins] = useState<Pin[] | null> (null);
+
   useEffect(() => {
     getData()
       .then((data) => {
@@ -29,10 +31,13 @@ export const App = () => {
             address: {
               lat: Number(dd.address.lat),
               lng: Number(dd.address.lng),
-            }
+            },
+            category_1: dd.category_1,
+            category_2: Number(dd.category_2),
           }
         })
         setPins(d);
+        setInitPins(d);
       })
   }, [])
 
@@ -52,7 +57,7 @@ export const App = () => {
       >
         <Map setId={setId} pins={pins} setShow={setShow} />
       </Box>
-      <Search />
+      <Search pins={pins} setPins={setPins} initPins={initPins} />
       <Display show={show} setShow={setShow} id={id} />
     </Box>
   );
