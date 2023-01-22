@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Display } from './components/Display/Display';
 import { Map } from './components/Map/Map';
