@@ -15,7 +15,10 @@ export const Card = ({ position, children }: Props) => {
                 height: "80%",
                 width: "20%",
                 top: "10%",
-                left: position === "left" ? "8%" : "72%"
+                left: position === "left" ? "8%" : "72%",
+                boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.1)",
+                backdropFilter: "blur(15px)",
+                borderRadius: "24px"
             }}
         >
             {children}
