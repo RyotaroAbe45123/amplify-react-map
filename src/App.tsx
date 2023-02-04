@@ -39,6 +39,8 @@ export const App = () => {
         setPins(d);
         setInitPins(d);
       })
+
+    
   }, [])
 
   return (
